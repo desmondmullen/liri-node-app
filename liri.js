@@ -2,6 +2,7 @@ const axios = require('axios');
 const moment = require('moment');
 const Spotify = require('node-spotify-api');
 const fs = require('fs');
+const chalk = require('chalk');
 require("dotenv").config();
 const keys = require("./keys.js");
 const spotify = new Spotify(keys.spotify);
@@ -29,12 +30,17 @@ function doTheAction() {
             doWhatItSays(theRequest);
             break;
         default:
-            console.log("Please enter a command followed by a search parameter");
-            console.log("following one of these examples: ");
+            console.log(chalk.white("\nPlease enter a command followed by a search parameter"));
+            console.log(chalk.white("following one of these examples:\n"));
             console.log("    node liri concert-this Elton John");
             console.log("    node liri spotify-this-song Purple Haze");
             console.log("    node liri movie-this Titanic");
-            console.log("    node liri do-what-it-says (NOTE: this command does not use a search parameter)");
+            console.log("    node liri do-what-it-says" + chalk.white("*"));
+            console.log("        " + chalk.white("* this command does not use a search"));
+            console.log(chalk.white("          parameter, it displays a default item)\n"));
+            console.log(chalk.white("    for '" + chalk.green("node liri do-what-it-says") + "', you can optionally add"));
+            console.log(chalk.white("    a space and the word " + chalk.green("'band'") + ", " + chalk.green("'song'") + ", or " + chalk.green("'movie'") + " to see"));
+            console.log(chalk.white("    the default item of that type\n"));
     };
 };
 
@@ -121,13 +127,29 @@ function movieThis(request, title) {
 };
 
 function doWhatItSays(request) {
-    if (request) { console.log(request) };
+    if (request) {
+        //request different results - band, song, movie
+    };
     fs.readFile("random.txt", "utf8", function (err, data) {
         if (err) {
             console.log("fs error: " + err);
         }
-        theAction = data.split(",")[0];
-        theRequest = (data.split(",")[1]).slice(1, -1);
+        var theLine;
+        switch (request) {
+            case "band":
+                theLine = data.split("\n")[0];
+                break;
+            case "song":
+                theLine = data.split("\n")[1];
+                break;
+            case "movie":
+                theLine = data.split("\n")[2];
+                break;
+            default:
+                theLine = data.split("\n")[1];
+        };
+        theAction = theLine.split(",")[0];
+        theRequest = (theLine.split(",")[1]).slice(1, -1);
         theSearch = theRequest.split(" ").join("+");
         doTheAction();
     });
