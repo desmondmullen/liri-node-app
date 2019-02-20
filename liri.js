@@ -26,7 +26,7 @@ function doTheAction() {
             movieThis(theRequest, theSearch);
             break;
         case "do-what-it-says":
-            doWhatItSays();
+            doWhatItSays(theRequest);
             break;
         default:
             console.log("Please enter a command followed by a search parameter");
@@ -120,7 +120,8 @@ function movieThis(request, title) {
         });
 };
 
-function doWhatItSays() {
+function doWhatItSays(request) {
+    if (request) { console.log(request) };
     fs.readFile("random.txt", "utf8", function (err, data) {
         if (err) {
             console.log("fs error: " + err);
