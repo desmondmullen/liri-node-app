@@ -18,7 +18,7 @@ function concertThis(artist) {
             console.log(error);
         });
 };
-// concertThis("interpol");
+concertThis("wailin+storms");
 
 
 /*spotify-this-song
@@ -29,20 +29,7 @@ The song's name
 A preview link of the song from Spotify
 The album that the song is from
 
-If no song is provided then your program will default to "The Sign" by Ace of Base.
-
-
-movie-this
-http://www.omdbapi.com/?i=tt3896198&apikey=8474986c
-
-* Title of the movie.
-   * Year the movie came out.
-   * IMDB Rating of the movie.
-   * Rotten Tomatoes Rating of the movie.
-   * Country where the movie was produced.
-   * Language of the movie.
-   * Plot of the movie.
-   * Actors in the movie.*/
+If no song is provided then your program will default to "The Sign" by Ace of Base.*/
 
 function movieThis(title) {
     axios.get("http://www.omdbapi.com/?s=" + title + "&plot=short&apikey=8474986c")
@@ -78,7 +65,7 @@ function movieThis(title) {
             console.log(error);
         });
 };
-movieThis("titanic");
+// movieThis("titanic");
 
 
 
