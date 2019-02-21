@@ -39,8 +39,8 @@ function doTheAction() {
             console.log("    node liri do-what-it-says" + chalk.white("*"));
             console.log("        " + chalk.white("* this command does not use a search"));
             console.log(chalk.white("          parameter, it displays a default item)\n"));
-            console.log(chalk.white("    for '" + chalk.reset("node liri do-what-it-says") + "', you can optionally add"));
-            console.log(chalk.white("    a space and the word " + chalk.reset("'band'") + ", " + chalk.reset("'song'") + ", or " + chalk.reset("'movie'") + " to see"));
+            console.log(chalk.white("    for '" + chalk.reset("node liri do-what-it-says") + chalk.white("', you can optionally add")));
+            console.log(chalk.white("    a space and the word " + chalk.reset("'band'") + ", " + chalk.reset("'song'") + chalk.white(", or ") + chalk.reset("'movie'") + chalk.white(" to see")));
             console.log(chalk.white("    the default item of that type\n"));
     };
 };
@@ -57,8 +57,8 @@ function writeToLog(action, request) {
 function concertThis(request, artist) {
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
         .then(function (response) {
-            console.log("\n\nComing events for '" + request + "'");
-            console.log("********************\n");
+            console.log(chalk.yellow("\n\nComing events for '" + request + "'"));
+            console.log("====================\n");
             artist.split(" ").join("+");
             Object.keys(response.data).forEach(function (key) {
                 let theVenue = response.data[key].venue;
@@ -71,7 +71,6 @@ function concertThis(request, artist) {
                 console.log("Date:     " + moment(response.data[key].datetime).format('MM/DD/YYYY'));
                 console.log("\n====================\n");
             });
-            console.log("\n\n");
         })
         .catch(function (error) {
             console.log(error);
@@ -79,8 +78,8 @@ function concertThis(request, artist) {
 };
 
 function spotifyThisSong(request, song) {
-    console.log("\n\nSearch results for '" + request + "'");
-    console.log("********************\n");
+    console.log(chalk.yellow("\n\nSearch results for '" + request + "'"));
+    console.log("====================\n");
     spotify.search({ type: "track", query: song, market: "US" }, function (err, data) {
         if (err) {
             return console.log("spotify error: " + err);
@@ -98,8 +97,8 @@ function spotifyThisSong(request, song) {
 function movieThis(request, title) {
     axios.get("http://www.omdbapi.com/?s=" + title + "&plot=short&apikey=8474986c")
         .then(function (response) {
-            console.log("\n\nSearch results for '" + request + "'");
-            console.log("********************\n");
+            console.log(chalk.yellow("\n\nSearch results for '" + request + "'"));
+            console.log("====================\n");
             title.split(" ").join("+");
             Object.keys(response.data.Search).forEach(function (key) {
                 axios.get("http://www.omdbapi.com/?i=" + response.data.Search[key].imdbID + "&plot=short&apikey=8474986c")
@@ -128,7 +127,6 @@ function movieThis(request, title) {
                         console.log(error);
                     });
             });
-            console.log("\n\n");
         })
         .catch(function (error) {
             console.log(error);
@@ -136,36 +134,53 @@ function movieThis(request, title) {
 };
 
 function doWhatItSays(request) {
-    fs.readFile("random.txt", "utf8", function (err, data) {
-        if (err) {
-            console.log("fs error: " + err);
-        }
-        let theData = data.split("\n");
-        let theLines = [];
-        for (i = 0; i < theData.length - 1; i++) {
-            theLines.push(theData[i]);
-        }
-        console.log(theLines);
-
-        var theLine;
-        switch (request) {
-            case "band":
-                theLine = data.split("\n")[0];
-                break;
-            case "song":
-                theLine = data.split("\n")[1];
-                break;
-            case "movie":
-                theLine = data.split("\n")[2];
-                break;
-            default:
-                theLine = data.split("\n")[1];
-        };
-        theAction = theLine.split(",")[0];
-        theRequest = (theLine.split(",")[1]).slice(1, -1);
-        theSearch = theRequest.split(" ").join("+");
-        doTheAction();
-    });
+    var theLine;
+    if (!request) {
+        fs.readFile("log.txt", "utf8", function (err, data) {
+            if (err) {
+                console.log("fs error: " + err);
+            }
+            let theData = data.split("\n");
+            let theLines = [];
+            for (i = 0; i < theData.length - 1; i++) {
+                theLines.push(theData[i]);
+            }
+            let randomNumber = Math.floor((Math.random() * theLines.length - 1) + 1);
+            // console.log(randomNumber, theLines.length - 1);
+            // console.log(theLines);
+            theLine = theLines[randomNumber];
+            // console.log(theLine);
+            theAction = theLine.split(",")[0];
+            theRequest = (theLine.split(",")[1]).slice(1, -1);
+            theSearch = theRequest.split(" ").join("+");
+            console.log("log: " + theAction, theRequest, theSearch);
+            // doTheAction();
+        });
+    } else {
+        fs.readFile("random.txt", "utf8", function (err, data) {
+            if (err) {
+                console.log("fs error: " + err);
+            }
+            switch (request) {
+                case "band":
+                    theLine = data.split("\n")[0];
+                    break;
+                case "song":
+                    theLine = data.split("\n")[1];
+                    break;
+                case "movie":
+                    theLine = data.split("\n")[2];
+                    break;
+                default:
+                    theLine = data.split("\n")[1];
+            };
+            theAction = theLine.split(",")[0];
+            theRequest = (theLine.split(",")[1]).slice(1, -1);
+            theSearch = theRequest.split(" ").join("+");
+            console.log("random: " + theAction, theRequest, theSearch);
+            // doTheAction();
+        });
+    };
 };
 
 // function doWhatItSays(request) {
