@@ -37,10 +37,10 @@ function doTheAction() {
             console.log("    node liri spotify-this-song Purple Haze");
             console.log("    node liri movie-this Titanic");
             console.log("    node liri do-what-it-says" + chalk.white("*"));
-            console.log("        " + chalk.white("* this command does not use a search"));
-            console.log(chalk.white("          parameter, it displays a default item)\n"));
+            console.log("        " + chalk.white("* this command does not use a search parameter, " + chalk.magenta("it")));
+            console.log(chalk.white("          " + chalk.magenta("displays a random item from previous searches\n")));
             console.log(chalk.white("    for '" + chalk.reset("node liri do-what-it-says") + chalk.white("', you can optionally add")));
-            console.log(chalk.white("    a space and the word " + chalk.reset("'band'") + ", " + chalk.reset("'song'") + chalk.white(", or ") + chalk.reset("'movie'") + chalk.white(" to see")));
+            console.log(chalk.white("    a space and the word " + chalk.reset("'concert'") + ", " + chalk.reset("'song'") + chalk.white(", or ") + chalk.reset("'movie'") + chalk.white(" to see")));
             console.log(chalk.white("    the default item of that type\n"));
     };
 };
@@ -87,7 +87,11 @@ function spotifyThisSong(request, song) {
         Object.keys(data.tracks.items).forEach(function (key) {
             console.log("Artist:   " + data.tracks.items[key].album.artists[0].name); //artist
             console.log("Title:    " + data.tracks.items[key].name); //song name
-            console.log("Preview:  " + data.tracks.items[key].preview_url); //preview link
+            let thePreview = data.tracks.items[key].preview_url;
+            if (thePreview === null) {
+                thePreview = "(no preview available)"
+            };
+            console.log("Preview:  " + thePreview); //preview link
             console.log("Album:    " + data.tracks.items[key].album.name); //album name
             console.log("\n====================\n");
         });
@@ -153,8 +157,8 @@ function doWhatItSays(request) {
             theAction = theLine.split(",")[0];
             theRequest = (theLine.split(",")[1]).slice(1, -1);
             theSearch = theRequest.split(" ").join("+");
-            console.log("log: " + theAction, theRequest, theSearch);
-            // doTheAction();
+            console.log(theAction, theRequest);
+            doTheAction();
         });
     } else {
         fs.readFile("random.txt", "utf8", function (err, data) {
@@ -162,7 +166,7 @@ function doWhatItSays(request) {
                 console.log("fs error: " + err);
             }
             switch (request) {
-                case "band":
+                case "concert":
                     theLine = data.split("\n")[0];
                     break;
                 case "song":
@@ -177,34 +181,8 @@ function doWhatItSays(request) {
             theAction = theLine.split(",")[0];
             theRequest = (theLine.split(",")[1]).slice(1, -1);
             theSearch = theRequest.split(" ").join("+");
-            console.log("random: " + theAction, theRequest, theSearch);
-            // doTheAction();
+            console.log(theAction, theRequest);
+            doTheAction();
         });
     };
 };
-
-// function doWhatItSays(request) {
-//     fs.readFile("random.txt", "utf8", function (err, data) {
-//         if (err) {
-//             console.log("fs error: " + err);
-//         }
-//         var theLine;
-//         switch (request) {
-//             case "band":
-//                 theLine = data.split("\n")[0];
-//                 break;
-//             case "song":
-//                 theLine = data.split("\n")[1];
-//                 break;
-//             case "movie":
-//                 theLine = data.split("\n")[2];
-//                 break;
-//             default:
-//                 theLine = data.split("\n")[1];
-//         };
-//         theAction = theLine.split(",")[0];
-//         theRequest = (theLine.split(",")[1]).slice(1, -1);
-//         theSearch = theRequest.split(" ").join("+");
-//         doTheAction();
-//     });
-// };
