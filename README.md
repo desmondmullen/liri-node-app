@@ -1,9 +1,9 @@
 # liri-node-app
 
-**This LIRI Node app retrieves data from Bandsintown, Spotify, and OMDB and formats the data cleanly to present readable information in a consistent format.**
+**This "Language Interpretation and Recognition Interface" node app retrieves data from Bandsintown, Spotify, and OMDB and formats the data cleanly to present readable information in a consistent format.**
 
 # Features
-In addition to the basic functions of the assignment, this app does the following:
+In addition to the basic functions of the assignment (collecting user queries, retrieving data for the queries, outputting readable data), this app does the following:
 
 ### ADDITIONAL FEATURES:
 * User is presented with basic instruction and examples of the use of the app if they type [node liri] without any parameters.
