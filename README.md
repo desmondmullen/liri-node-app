@@ -12,4 +12,5 @@ In addition to the basic functions of the assignment (collecting user queries, r
 * Additionally, do-what-it-says can be invoked with a simple parameter ('concert', 'song', or 'movie', e.g., `node liri do-what-it-says concert` to get results for the corresponding "default" searches contained in the random.txt file.
 
 ### SCREENSHOTS:
+1. 'node liri' without arguments brings up basic instructions and examples:
 ![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/1.node_liri_without_arguments.png)
