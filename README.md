@@ -13,7 +13,7 @@ In addition to the basic functions of the assignment (collecting user queries, r
 
 ### SCREENSHOTS:
 1. `node liri` without arguments brings up basic instructions and examples:
-![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/1.node_liri_without_arguments.png)
+![basic instructions](screenshots/1.node_liri_without_arguments.png)
 2. `node liri concert-this The Who`:
 ![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/2.concert-this_The_Who.png)
 3. `node liri spotify-this-song Sign of the Times`:
