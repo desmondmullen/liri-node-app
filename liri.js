@@ -12,6 +12,7 @@ var theRequest = (process.argv.slice(3, process.argv.length)).join(" ");
 var theSearch = (process.argv.slice(3, process.argv.length)).join("+");
 
 function doTheAction() {
+    writeToLog(theAction, theRequest);
     switch (theAction) {
         case "concert-this":
             concertThis(theRequest, theSearch);
@@ -45,6 +46,13 @@ function doTheAction() {
 };
 
 doTheAction();
+
+function writeToLog(action, request) {
+    let theString = action + ",\"" + request + "\"\n";
+    fs.appendFile("log.txt", theString, "utf8", function (err) {
+        if (err) { throw err };
+    });
+};
 
 function concertThis(request, artist) {
     axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
@@ -128,13 +136,17 @@ function movieThis(request, title) {
 };
 
 function doWhatItSays(request) {
-    if (request) {
-        //request different results - band, song, movie
-    };
     fs.readFile("random.txt", "utf8", function (err, data) {
         if (err) {
             console.log("fs error: " + err);
         }
+        let theData = data.split("\n");
+        let theLines = [];
+        for (i = 0; i < theData.length - 1; i++) {
+            theLines.push(theData[i]);
+        }
+        console.log(theLines);
+
         var theLine;
         switch (request) {
             case "band":
@@ -155,3 +167,29 @@ function doWhatItSays(request) {
         doTheAction();
     });
 };
+
+// function doWhatItSays(request) {
+//     fs.readFile("random.txt", "utf8", function (err, data) {
+//         if (err) {
+//             console.log("fs error: " + err);
+//         }
+//         var theLine;
+//         switch (request) {
+//             case "band":
+//                 theLine = data.split("\n")[0];
+//                 break;
+//             case "song":
+//                 theLine = data.split("\n")[1];
+//                 break;
+//             case "movie":
+//                 theLine = data.split("\n")[2];
+//                 break;
+//             default:
+//                 theLine = data.split("\n")[1];
+//         };
+//         theAction = theLine.split(",")[0];
+//         theRequest = (theLine.split(",")[1]).slice(1, -1);
+//         theSearch = theRequest.split(" ").join("+");
+//         doTheAction();
+//     });
+// };
