@@ -15,16 +15,16 @@ In addition to the basic functions of the assignment (collecting user queries, r
 1. `node liri` without arguments brings up basic instructions and examples:
 ![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/1.node_liri_without_arguments.png)
 2. `node liri concert-this The Who`:
-![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/2.concert-this_The_Who)
+![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/2.concert-this_The_Who.png)
 3. `node liri spotify-this-song Sign of the Times`:
-![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/3.spotify-this-song_Sign_of_the_Times)
+![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/3.spotify-this-song_Sign_of_the_Times.png)
 4. `node liri movie-this Star Wars`:
-![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/4.movie-this_Star_Wars)
+![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/4.movie-this_Star_Wars.png)
 5. `node liri do-what-it-says` gets random search query from log.txt:
-![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/5.do-what-it-says_random_from_log)
+![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/5.do-what-it-says_random_from_log.png)
 6. `node liri do-what-it-says concert` gets concert example from random.txt:
-![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/6.do-what-it-says_concert)
+![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/6.do-what-it-says_concert.png)
 7. `node liri do-what-it-says song` gets song example from random.txt:
-![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/7.do-what-it-says_song)
+![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/7.do-what-it-says_song.png)
 8. `node liri do-what-it-says movie` gets movie example from random.txt:
-![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/8.do-what-it-says_movie)
+![basic instructions](https://desmondmullen.com/liri-node-app/screenshots/8.do-what-it-says_movie.png)
