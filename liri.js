@@ -38,8 +38,8 @@ function doTheAction() {
             console.log("    node liri do-what-it-says" + chalk.white("*"));
             console.log("        " + chalk.white("* this command does not use a search"));
             console.log(chalk.white("          parameter, it displays a default item)\n"));
-            console.log(chalk.white("    for '" + chalk.green("node liri do-what-it-says") + "', you can optionally add"));
-            console.log(chalk.white("    a space and the word " + chalk.green("'band'") + ", " + chalk.green("'song'") + ", or " + chalk.green("'movie'") + " to see"));
+            console.log(chalk.white("    for '" + chalk.reset("node liri do-what-it-says") + "', you can optionally add"));
+            console.log(chalk.white("    a space and the word " + chalk.reset("'band'") + ", " + chalk.reset("'song'") + ", or " + chalk.reset("'movie'") + " to see"));
             console.log(chalk.white("    the default item of that type\n"));
     };
 };
@@ -77,12 +77,13 @@ function spotifyThisSong(request, song) {
         if (err) {
             return console.log("spotify error: " + err);
         }
-        console.log("Artist:   " + data.tracks.items[0].album.artists[0].name); //artist
-        console.log("Title:    " + data.tracks.items[0].name); //song name
-        console.log("Preview:  " + data.tracks.items[0].preview_url); //preview link
-        console.log("Album:    " + data.tracks.items[0].album.name); //album name
-        console.log("\n====================\n");
-
+        Object.keys(data.tracks.items).forEach(function (key) {
+            console.log("Artist:   " + data.tracks.items[key].album.artists[0].name); //artist
+            console.log("Title:    " + data.tracks.items[key].name); //song name
+            console.log("Preview:  " + data.tracks.items[key].preview_url); //preview link
+            console.log("Album:    " + data.tracks.items[key].album.name); //album name
+            console.log("\n====================\n");
+        });
     });
 };
 
