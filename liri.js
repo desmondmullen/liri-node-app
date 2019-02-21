@@ -150,10 +150,7 @@ function doWhatItSays(request) {
                 theLines.push(theData[i]);
             }
             let randomNumber = Math.floor((Math.random() * theLines.length - 1) + 1);
-            // console.log(randomNumber, theLines.length - 1);
-            // console.log(theLines);
             theLine = theLines[randomNumber];
-            // console.log(theLine);
             theAction = theLine.split(",")[0];
             theRequest = (theLine.split(",")[1]).slice(1, -1);
             theSearch = theRequest.split(" ").join("+");
