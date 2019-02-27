@@ -15,16 +15,16 @@ In addition to the basic functions of collecting user queries, retrieving data f
 1. `node liri` without arguments brings up basic instructions and examples:
 ![basic instructions](screenshots/1.node_liri_without_arguments.png)
 2. `node liri concert-this The Who`:
-![basic instructions](screenshots/2.concert-this_The_Who.png)
+![concert-this example](screenshots/2.concert-this_The_Who.png)
 3. `node liri spotify-this-song Sign of the Times`:
-![basic instructions](screenshots/3.spotify-this-song_Sign_of_the_Times.png)
+![spotify-this-song example](screenshots/3.spotify-this-song_Sign_of_the_Times.png)
 4. `node liri movie-this Star Wars`:
-![basic instructions](screenshots/4.movie-this_Star_Wars.png)
+![movie-this example](screenshots/4.movie-this_Star_Wars.png)
 5. `node liri do-what-it-says` gets random search query from log.txt:
-![basic instructions](screenshots/5.do-what-it-says_random_from_log.png)
+![do-what-it-says example 1](screenshots/5.do-what-it-says_random_from_log.png)
 6. `node liri do-what-it-says concert` gets concert example from random.txt:
-![basic instructions](screenshots/6.do-what-it-says_concert.png)
+![do-what-it-says example 2](screenshots/6.do-what-it-says_concert.png)
 7. `node liri do-what-it-says song` gets song example from random.txt:
-![basic instructions](screenshots/7.do-what-it-says_song.png)
+![do-what-it-says example 3](screenshots/7.do-what-it-says_song.png)
 8. `node liri do-what-it-says movie` gets movie example from random.txt:
-![basic instructions](screenshots/8.do-what-it-says_movie.png)
+![do-what-it-says example 4](screenshots/8.do-what-it-says_movie.png)
